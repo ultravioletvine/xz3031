@@ -1,0 +1,166 @@
+def read_management_fee_from_csv(direc: str) -> pd.DataFrame:
+    management_fee_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    management_fee_df.drop(col_to_drop, axis=1, inplace=True)
+
+    management_fee_df = clean_column_name(management_fee_df)
+
+    # Delete the rows with a missing ISIN
+    management_fee_df = management_fee_df[~management_fee_df["isin"].isnull()]
+
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(management_fee_df)
+    for col in col_to_fill_unknown:
+        management_fee_df[col].fillna("Unknown", inplace=True)
+
+    return management_fee_df
+    
+
+def read_distribution_from_csv(direc: str) -> pd.DataFrame:
+    distribution_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    distribution_df.drop(col_to_drop, axis=1, inplace=True)
+
+    distribution_df = clean_column_name(distribution_df)
+    
+    # Delete the rows with a missing ISIN
+    distribution_df = distribution_df[~distribution_df["isin"].isnull()]
+
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(distribution_df)
+    for col in col_to_fill_unknown:
+        distribution_df[col].fillna("Unknown", inplace=True)
+
+    return distribution_df
+    
+    
+def read_opt_tax_from_csv(direc: str) -> pd.DataFrame:
+    opt_tax_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    opt_tax_df.drop(col_to_drop, axis=1, inplace=True)
+
+    opt_tax_df = clean_column_name(opt_tax_df)
+    
+    # Delete the rows with a missing ISIN
+    opt_tax_df = opt_tax_df[~opt_tax_df["isin"].isnull()]
+
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(opt_tax_df)
+    for col in col_to_fill_unknown:
+        opt_tax_df[col].fillna("Unknown", inplace=True)
+
+    return opt_tax_df
+    
+    
+def read_return_profile_from_csv(direc: str) -> pd.DataFrame:
+    return_profile_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    return_profile_df.drop(col_to_drop, axis=1, inplace=True)
+
+    return_profile_df = clean_column_name(return_profile_df)
+    
+    # Delete the rows with a missing ISIN
+    return_profile_df = return_profile_df[~return_profile_df["isin"].isnull()]
+
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(return_profile_df)
+    for col in col_to_fill_unknown:
+        return_profile_df[col].fillna("Unknown", inplace=True)
+
+    return return_profile_df
+    
+    
+def read_expertise_from_csv(direc: str) -> pd.DataFrame:
+    expertise_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    expertise_df.drop(col_to_drop, axis=1, inplace=True)
+
+    expertise_df = clean_column_name(expertise_df)
+
+    # Delete the rows with a missing ISIN
+    expertise_df = expertise_df[~expertise_df["isin"].isnull()]
+
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(expertise_df)
+    for col in col_to_fill_unknown:
+        expertise_df[col].fillna("Unknown", inplace=True)
+
+    return expertise_df
+    
+    
+def read_opt_firm_from_csv(direc: str) -> pd.DataFrame:
+    opt_firm_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    opt_firm_df.drop(col_to_drop, axis=1, inplace=True)
+
+    opt_firm_df = clean_column_name(opt_firm_df)
+    
+    # Delete the rows with a missing ISIN
+    opt_firm_df = opt_firm_df[~opt_firm_df["isin"].isnull()]
+
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(opt_firm_df)
+    for col in col_to_fill_unknown:
+        opt_firm_df[col].fillna("Unknown", inplace=True)
+
+    return opt_firm_df
+    
+    
+def read_risk_from_csv(direc: str) -> pd.DataFrame:
+    
+    risk_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    risk_df.drop(col_to_drop, axis=1, inplace=True)
+
+    risk_df = clean_column_name(risk_df)
+    
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(risk_df)
+    for col in col_to_fill_unknown:
+        risk_df[col].fillna("Unknown", inplace=True)
+
+    return risk_df
+    
+    
+def read_opt_risk_from_csv(direc: str) -> pd.DataFrame:
+    opt_risk_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    opt_risk_df.drop(col_to_drop, axis=1, inplace=True)
+
+    opt_risk_df = clean_column_name(opt_risk_df)
+
+    # Delete the rows with a missing ISIN
+    opt_risk_df = opt_risk_df[~opt_risk_df["isin"].isnull()]
+
+    # Fill in the blanks with Unknown as a new category
+    col_to_fill_unknown = list(opt_risk_df)
+    for col in col_to_fill_unknown:
+        opt_risk_df[col].fillna("Unknown", inplace=True)
+
+    return opt_risk_df
+    
+    
+def read_attr_exclusion_from_csv(direc: str) -> pd.DataFrame:
+    attr_exclusion_df = pd.read_csv(direc)
+
+    col_to_drop = ['Mutual Fund Name']
+    attr_exclusion_df.drop(col_to_drop, axis=1, inplace=True)
+
+    attr_exclusion_df = clean_column_name(attr_exclusion_df)
+
+    # Delete the rows with a missing ISIN
+    attr_exclusion_df = attr_exclusion_df[~attr_exclusion_df["isin"].isnull()]
+
+    # Fill in the blanks with mode as it's a y/n answer
+    attr_exclusion_df = attr_exclusion_df.fillna(
+        attr_exclusion_df.mode().iloc[0])
+
+    return attr_exclusion_df
